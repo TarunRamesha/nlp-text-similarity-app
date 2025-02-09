@@ -7,7 +7,6 @@ from pathlib import Path
 from typing import Callable, Union, List
 from transformers import AutoTokenizer, AutoModel
 from nlp.processors.embedding_processor import EmbeddingProcessor
-from nlp.utils.pt_helpers import mean_pooling_pt, max_pooling_pt, cls_pooling_pt
 
 class TransformersProcessor(EmbeddingProcessor):
     """
@@ -28,7 +27,6 @@ class TransformersProcessor(EmbeddingProcessor):
             pooling_operation (Callable): Function to apply pooling on token embeddings.
             logger (logging.Logger, optional): Logger instance for logging. Defaults to a module-level logger.
         """
-
         self._logger = logger
         self._tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
         self._model = AutoModel.from_pretrained(model_name_or_path)
@@ -54,7 +52,6 @@ class TransformersProcessor(EmbeddingProcessor):
         applies the defined pooling operation to extract meaningful embeddings,
         and optionally normalizes the embeddings.
         """
-        
         if isinstance(corpus, str):
             corpus = [corpus]
         
